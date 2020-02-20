@@ -44,7 +44,7 @@ Open the `SpecRunner.html` file on your browser and start coding to pass the tes
 
 ### Progression 1: Clash of clans
 
-Brace yourself ! We are in the last legs. Help Dustin and Lucus by completing the logic of `isFight()` method such that it should _return `clash`_ when it satisfies the constraint. Otherwise it should _return `peace`_. The given constraint is that a Super Hero and Super Villain with strength greter than zero should be there to make a clash.
+Brace yourself ! We are in the last legs. Help Dustin and Lucus by completing the logic of `isFight()` method such that it should _return `clash`_ when it satisfies the constraint. Otherwise it should _return `peace`_. The given constraint is that a Super Hero and Super Villain with strength greater than zero should be there to make a clash.
 
 ### Progression 2: Consistency afford refuge
 
