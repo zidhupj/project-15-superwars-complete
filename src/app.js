@@ -122,8 +122,7 @@ class Superwar {
     // Check for fight
     isFight = () => {
         // Type your code here
-
-        // return  'clash' or 'peace';
+        return this.players.filter(player => player.selected && player.strength > 0).length === 2 ? 'clash' : 'peace';
     }
 
     // Fight
@@ -131,6 +130,15 @@ class Superwar {
         // Filtered the selected players and calculate score
         // Should return HTML element with score
         // Type your code here
+        let selectedPlayers = this.players.filter(player => player.selected);
+        selectedPlayers.forEach(player => {
+            if (player.strength > 0)
+                player.wins += 1;
+        });
+
+        let score = this.calculateScore();
+        document.getElementById('score').innerHTML =
+            score["hero"] + " - " + score["villain"];
 
         if (this.checkWin() !== 'endure')
             setTimeout(() => this.announceWinner(score), 100);
@@ -139,8 +147,10 @@ class Superwar {
     // Calculate score
     calculateScore = () => {
         // Calculate and return the total score of teams
-        // Type your code here
-
+        let score = { hero: 0, villain: 0 };
+        this.players.reduce(player => {
+            score[player.type] += player.wins;
+        });
         return score;
     }
 
@@ -148,16 +158,21 @@ class Superwar {
     checkWin = () => {
         // Find the winner if exists return type hero or villain
         // If winner dosen't exists then return endure
-        // Type your code here
-
-      return result;
+        let heroStrength = this.totalStrength('hero');
+        let villainStrength = this.totalStrength('villain')
+        if (heroStrength == 0 && villainStrength == 0) {
+            return 'endure';
+        } else {
+            return heroStrength == 0 ? 'villain' : 'hero';
+        }
     }
 
     // Find total strength of a team
     totalStrength = (type) => {
         // Calculate and return the total strength of the team
-        // Type your code here
-
+        const strength = this.players.reduce((total, player) =>
+            total += player.type == type ? player.strength : 0
+            , 0);
         return strength;
     }
 
